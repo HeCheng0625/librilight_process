@@ -18,7 +18,9 @@ if __name__ == "__main__":
     parser.add_argument('--export_chunk_len', type=int, default=750)
     parser.add_argument('--min_silence_len', type=int, default=500)
     parser.add_argument('--keep_silence', type=int, default=500)
-
+    parser.add_argument('--spk_num_start', type=int, default=0)
+    parser.add_argument('--spk_num_end', type=int, default=100)
+    
     args = parser.parse_args()
 
     model = whisper.load_model("base")
@@ -60,7 +62,7 @@ if __name__ == "__main__":
     input_dir = args.in_dir
     out_dir = args.out_dir
 
-    for spk_id in sorted(os.listdir(input_dir)):
+    for spk_id in tqdm(sorted(os.listdir(input_dir))[args.spk_num_start: args.spk_num_end]):
         spk_path = os.path.join(input_dir, spk_id)
         for chapter_id in sorted(os.listdir(spk_path)):
             chapter_path = os.path.join(spk_path, chapter_id)
