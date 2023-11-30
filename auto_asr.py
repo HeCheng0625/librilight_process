@@ -80,6 +80,8 @@ if __name__ == "__main__":
     for spk_id in tqdm(sorted(os.listdir(input_dir))[args.spk_num_start: args.spk_num_end]):
         print("speaker:", spk_id)
         spk_path = os.path.join(input_dir, spk_id)
+        if len(os.listdir(spk_path)) == 0:
+            continue
         for chapter_id in tqdm(sorted(os.listdir(spk_path))):
             print("chapter:", chapter_id)
             chapter_path = os.path.join(spk_path, chapter_id)
