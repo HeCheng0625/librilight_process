@@ -54,7 +54,8 @@ if __name__ == "__main__":
         for i, audio_chunk in enumerate(output_chunks, start=1):
             chunk_filename = os.path.join(out_path, wav_name + "_{}.wav".format(str(i).zfill(2)))
             text_filename = os.path.join(out_path, wav_name + "_{}.txt".format(str(i).zfill(2)))
-            audio_chunk.export(chunk_filename, format="wav")
+            if not os.path.isfile(text_filename):
+                audio_chunk.export(chunk_filename, format="wav")
             if os.path.isfile(text_filename):
                 continue
             try:
@@ -71,9 +72,13 @@ if __name__ == "__main__":
     out_dir = args.out_dir
 
     for spk_id in tqdm(sorted(os.listdir(input_dir))[args.spk_num_start: args.spk_num_end]):
+        print("speaker:", spk_id)
         spk_path = os.path.join(input_dir, spk_id)
         for chapter_id in tqdm(sorted(os.listdir(spk_path))):
+            print("chapter:", chapter_id)
             chapter_path = os.path.join(spk_path, chapter_id)
+            if len(os.listdir(chapter_path)) == 0:
+                continue
             for wav_name in tqdm(sorted(os.listdir(chapter_path))):
                 wav_path = os.path.join(chapter_path, wav_name)
                 out_path = os.path.join(out_dir, spk_id, chapter_id)
