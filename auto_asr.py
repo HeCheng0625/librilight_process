@@ -82,12 +82,12 @@ if __name__ == "__main__":
         spk_path = os.path.join(input_dir, spk_id)
         if len(os.listdir(spk_path)) == 0:
             continue
-        for chapter_id in tqdm(sorted(os.listdir(spk_path))):
+        for chapter_id in sorted(os.listdir(spk_path)):
             print("chapter:", chapter_id)
             chapter_path = os.path.join(spk_path, chapter_id)
             if len(os.listdir(chapter_path)) == 0:
                 continue
-            for wav_name in tqdm(sorted(os.listdir(chapter_path))):
+            for wav_name in sorted(os.listdir(chapter_path)):
                 wav_path = os.path.join(chapter_path, wav_name)
                 out_path = os.path.join(out_dir, spk_id, chapter_id)
                 get_large_audio_transcription_on_silence_whisper(wav_path, args.export_chunk_len, out_path)
