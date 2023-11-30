@@ -57,7 +57,7 @@ if __name__ == "__main__":
             except Exception as e:
                 print("Error:", str(e))
             else:
-                text = f"{text.capitalize()}. "
+                text = f"{text.capitalize()}"
                 # print(chunk_filename, ":", text)
                 with open(text_filename, "w") as f:
                     f.write(text)
@@ -67,9 +67,9 @@ if __name__ == "__main__":
 
     for spk_id in tqdm(sorted(os.listdir(input_dir))[args.spk_num_start: args.spk_num_end]):
         spk_path = os.path.join(input_dir, spk_id)
-        for chapter_id in sorted(os.listdir(spk_path)):
+        for chapter_id in tqdm(sorted(os.listdir(spk_path))):
             chapter_path = os.path.join(spk_path, chapter_id)
-            for wav_name in sorted(os.listdir(chapter_path)):
+            for wav_name in tqdm(sorted(os.listdir(chapter_path))):
                 wav_path = os.path.join(chapter_path, wav_name)
                 out_path = os.path.join(out_dir, spk_id, chapter_id)
                 get_large_audio_transcription_on_silence_whisper(wav_path, args.export_chunk_len, out_path)
