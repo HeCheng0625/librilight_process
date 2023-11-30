@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
         wav_name = wav_path.split("/")[-1].split(".")[0]
         for i, audio_chunk in enumerate(output_chunks, start=1):
-            chunk_filename = os.path.join(out_path, wav_name + "{}.wav".format(str(i).zfill(2)))
+            chunk_filename = os.path.join(out_path, wav_name + "_{}.wav".format(str(i).zfill(2)))
             audio_chunk.export(chunk_filename, format="wav")
 
             try:
