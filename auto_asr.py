@@ -39,7 +39,11 @@ if __name__ == "__main__":
         if not os.path.isdir(out_path):
             os.makedirs(out_path, exist_ok=True)
 
-        output_chunks = [chunks[0]]
+        try:
+            output_chunks = [chunks[0]]
+        except:
+            return
+
         for chunk in chunks[1:]:
             if len(output_chunks[-1]) < export_chunk_len:
                 output_chunks[-1] += chunk
@@ -51,7 +55,8 @@ if __name__ == "__main__":
             chunk_filename = os.path.join(out_path, wav_name + "_{}.wav".format(str(i).zfill(2)))
             text_filename = os.path.join(out_path, wav_name + "_{}.txt".format(str(i).zfill(2)))
             audio_chunk.export(chunk_filename, format="wav")
-
+            if os.path.isfile(text_filename):
+                continue
             try:
                 text = transcribe_audio_whisper(chunk_filename)
             except Exception as e:
