@@ -34,6 +34,12 @@ if __name__ == "__main__":
         return text
 
     def get_large_audio_transcription_on_silence_whisper(wav_path, export_chunk_len, out_path):
+        
+        wav_name = wav_path.split("/")[-1].split(".")[0]
+        temp_chunk_filename = os.path.join(out_path, wav_name + "_01.wav")
+        if os.path.isfile(temp_chunk_filename):
+            return
+       
         sound = AudioSegment.from_file(wav_path)
         chunks = split_on_silence(sound, min_silence_len=500, silence_thresh=sound.dBFS-14, keep_silence=500)
         if not os.path.isdir(out_path):
