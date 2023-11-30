@@ -61,7 +61,6 @@ if __name__ == "__main__":
                 # print(chunk_filename, ":", text)
                 with open(text_filename, "w") as f:
                     f.write(text)
-                exit(0)
 
     input_dir = args.in_dir
     out_dir = args.out_dir
