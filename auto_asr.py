@@ -90,5 +90,5 @@ if __name__ == "__main__":
             for wav_name in sorted(os.listdir(chapter_path)):
                 wav_path = os.path.join(chapter_path, wav_name)
                 out_path = os.path.join(out_dir, spk_id, chapter_id)
+                print(wav_path)
                 get_large_audio_transcription_on_silence_whisper(wav_path, args.export_chunk_len, out_path)
-            break
