@@ -7,6 +7,3 @@
     --keep_silence=500 \
     --spk_num_start=600 \
     --spk_num_end=700 \
-
-
-# GPU 3: 0 - 100
