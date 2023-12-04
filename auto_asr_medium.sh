@@ -5,5 +5,5 @@
     --export_chunk_len=7500 \
     --min_silence_len=500 \
     --keep_silence=500 \
-    --spk_num_start=600 \
-    --spk_num_end=700 \
+    --spk_num_start=1500 \
+    --spk_num_end=1600 \
