@@ -197,12 +197,15 @@ if __name__ == "__main__":
                 
                 out_path = os.path.join(out_dir, spk_id, chapter_id, txt_name.replace(".txt", ".phone"))
 
-                with open(txt_path, "r") as f:
-                    lines = f.readlines()
-                    line = lines[0].replace("\n", "")
-                # print(line)
-                phone = tokenize_text(tokenizer, line)
-                phone_seq = [phn for phn in phone]
-                with open(out_path, 'w') as fin:
-                    fin.write(' '.join(phone_seq))
-                # print(phone)
+                try:
+                    with open(txt_path, "r") as f:
+                        lines = f.readlines()
+                        line = lines[0].replace("\n", "")
+                    # print(line)
+                    phone = tokenize_text(tokenizer, line)
+                    phone_seq = [phn for phn in phone]
+                    with open(out_path, 'w') as fin:
+                        fin.write(' '.join(phone_seq))
+                    # print(phone)
+                except:
+                    continue

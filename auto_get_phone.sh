@@ -3,4 +3,4 @@
     --out_dir="/home/v-detaixin/librilight/small_phones" \
     --device_id="0" \
     --spk_num_start=0 \
-    --spk_num_end=100 \
+    --spk_num_end=2000 \
